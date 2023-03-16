@@ -1,0 +1,61 @@
+.page {
+    width: 100%;
+    height: calc(100vh - 100px);
+    overflow: hidden;
+}
+
+.btn__container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+.btn {
+    width: 10rem;
+    height: 3rem;
+    background-color: #3EDFDF;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.timer__container {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.timer {
+    font-size: 80px;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.timer__btn-container {
+    display: flex;
+    gap: 1rem;
+    font-size: 18px;
+}
+
+.timer__btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.timer__btn:hover {
+    transform: scale(1.03);
+}
+
+.stop {
+    background-color: rgb(170, 18, 18);
+}
+
+.start {
+    background-color: rgb(62, 223, 223);
+}
