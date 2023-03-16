@@ -2,6 +2,7 @@
     width: 100%;
     height: calc(100vh - 100px);
     overflow: hidden;
+    position: relative;
 }
 
 .btn__container {
@@ -15,9 +16,10 @@
     width: 10rem;
     height: 3rem;
     background-color: #3EDFDF;
-    border: none;
+    border-top: none;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .timer__container {
@@ -46,6 +48,7 @@
     border-radius: 8px;
     color: #fff;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .timer__btn:hover {
@@ -58,4 +61,32 @@
 
 .start {
     background-color: rgb(62, 223, 223);
+}
+
+.manual__values {
+    padding: 2rem;
+    width: 5rem;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    background-color: #3EFDFD;
+}
+
+.manual__values-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.manual__values-container input {
+    text-align: center;   
+}
+
+.manual__values-container input:focus {
+    outline: none;
+}
+
+.manual__btn {
+    background-color: #eee;
+    cursor: pointer;
 }
