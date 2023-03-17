@@ -15,57 +15,69 @@ export default function PageContent() {
 
   function handleStart() {
     setManualOption(false);
-    setCountDown(true)
+    setCountDown(true);
   }
 
   function timerFunction() {
-    if (sec === 0 && min === 0 && hour > 0) {
-      setSec(59);
-      setMin(59);
-      setHour(hour - 1);
-    } else if (sec === 0 && min > 0 && hour === 0) {
+    if (
+      countDown &&
+      ((sec && min && hour) ||
+        (sec && min < 1 && hour) ||
+        (sec && min && hour < 1) ||
+        (sec && min < 1 && hour < 1))
+    ) {
+      setSec(sec - 1);
+      setMin(min);
+      setHour(hour);
+    } else if (
+      countDown &&
+      ((sec < 1 && min && hour) || (sec < 1 && min && hour < 1))
+    ) {
       setSec(59);
       setMin(min - 1);
-      setHour(0);
-    } else if (sec === 0 && min === 0 && hour === 0) {
-      setSec(0);
-      setMin(0);
-      setHour(0);
-    }
-    if (sec === 1 && min > 0) {
+      setHour(hour);
+    } else if (countDown && sec < 1 && min < 1 && hour) {
       setSec(59);
-      setMin(min - 1);
-    }
-    if (min === 1 && hour > 0) {
       setMin(59);
       setHour(hour - 1);
     }
   }
 
   function autoTimer() {
+    setCountDown(false);
     setSec(0);
     setMin(10);
     setHour(0);
-    setCountDown(false);
   }
 
   useEffect(() => {
-    timerFunction();
-    setTimeout(() => {
-      if (countDown && sec) {
-        setSec(sec - 1);
-      }
+    console.log("time");
+    const identifier = setTimeout(() => {
+      timerFunction();
     }, 1000);
+    return () => {
+      clearTimeout(identifier);
+    };
   }, [sec, countDown]);
 
   return (
     <div className="page">
-      {manualOption && <ManualPage sec={sec} setSec={setSec} min={min} setMin={setMin} hour={hour} setHour={setHour} setManualOption={setManualOption}/>}
+      {manualOption && (
+        <ManualPage
+          sec={sec}
+          setSec={setSec}
+          min={min}
+          setMin={setMin}
+          hour={hour}
+          setHour={setHour}
+          setManualOption={setManualOption}
+        />
+      )}
       <div className="btn__container">
         <button className="btn manual" onClick={toggleModal}>
           Manual
         </button>
-        <button className="btn auto" onClick={autoTimer}>
+        <button type="reset" className="btn auto" onClick={autoTimer}>
           Auto
         </button>
       </div>
